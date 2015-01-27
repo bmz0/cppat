@@ -1,0 +1,37 @@
+# Project: at
+# Makefile created by Dev-C++ 5.4.3 RC1
+
+CPP      = g++.exe
+CC       = gcc.exe
+WINDRES  = windres.exe
+OBJ      = main.o anim.o scene.o core.o
+LINKOBJ  = main.o anim.o scene.o core.o
+LIBS     = -L"C:/Program Files/Dev-Cpp/MinGW32/lib" -static-libstdc++ -static-libgcc -L"C:/work/SFML-2.0/lib" -mwindows -lsfml-graphics -lsfml-window -lsfml-system 
+INCS     = -I"C:/Program Files/Dev-Cpp/MinGW32/include" -I"C:/work/SFML-2.0/include"
+CXXINCS  = -I"C:/Program Files/Dev-Cpp/MinGW32/include" -I"C:/work/SFML-2.0/include"
+BIN      = at.exe
+CXXFLAGS = $(CXXINCS) -std=c++11 -Wall -Wextra -pedantic
+CFLAGS   = $(INCS) -std=c++11 -Wall -Wextra -pedantic
+RM       = rm -f
+
+.PHONY: all all-before all-after clean clean-custom
+
+all: all-before $(BIN) all-after
+
+clean: clean-custom
+	${RM} $(OBJ) $(BIN)
+
+$(BIN): $(OBJ)
+	$(CPP) $(LINKOBJ) -o $(BIN) $(LIBS)
+
+main.o: main.cpp
+	$(CPP) -c main.cpp -o main.o $(CXXFLAGS)
+
+anim.o: anim.cpp
+	$(CPP) -c anim.cpp -o anim.o $(CXXFLAGS)
+
+scene.o: scene.cpp
+	$(CPP) -c scene.cpp -o scene.o $(CXXFLAGS)
+
+core.o: core.cpp
+	$(CPP) -c core.cpp -o core.o $(CXXFLAGS)
